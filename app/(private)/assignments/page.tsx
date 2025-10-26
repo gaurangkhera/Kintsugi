@@ -2,7 +2,8 @@
 
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { Target, MapPin, Inbox } from "lucide-react";
+import { Target, MapPin, Inbox, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 export default function AssignmentsPage() {
   const assignments = useQuery(api.assignments.getAllAssignments) ?? [];
@@ -29,9 +30,10 @@ export default function AssignmentsPage() {
           </div>
         ) : (
           assignments.map((assignment: any) => (
-            <div
+            <Link
               key={assignment._id}
-              className="bg-white/[0.02] border border-white/5 hover:bg-white/[0.03] hover:border-white/10 transition-all overflow-hidden"
+              href={`/assignments/${assignment._id}`}
+              className="block bg-white/[0.02] border border-white/5 hover:bg-white/[0.03] hover:border-white/10 transition-all overflow-hidden group"
             >
               <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
@@ -41,11 +43,13 @@ export default function AssignmentsPage() {
                       {assignment.title}
                     </h2>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 items-center">
                     <span
                       className={`px-3 py-1 text-[10px] tracking-wider uppercase ${
                         assignment.status === "active"
                           ? "bg-green-400/10 text-green-400"
+                          : assignment.status === "claimed"
+                          ? "bg-blue-400/10 text-blue-400"
                           : "bg-white/5 text-gray-500"
                       }`}
                     >
@@ -54,6 +58,7 @@ export default function AssignmentsPage() {
                     <span className="px-3 py-1 text-[10px] tracking-wider uppercase bg-white/5 text-gray-500">
                       {assignment.type}
                     </span>
+                    <ChevronRight className="w-4 h-4 text-gray-600 group-hover:text-amber-400 transition-colors" />
                   </div>
                 </div>
                 <p className="text-gray-400 text-sm leading-relaxed mb-4">{assignment.description}</p>
@@ -64,7 +69,7 @@ export default function AssignmentsPage() {
                   </div>
                 )}
               </div>
-            </div>
+            </Link>
           ))
         )}
       </div>

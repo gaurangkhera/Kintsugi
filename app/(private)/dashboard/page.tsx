@@ -7,8 +7,11 @@ import Link from "next/link";
 
 export default function WorkshopDashboard() {
   const user = useQuery(api.users.getCurrentUser);
-  const assignments = useQuery(api.assignments.getActiveAssignments) ?? [];
+  const allAssignments = useQuery(api.assignments.getAllAssignments) ?? [];
   const messages = useQuery(api.messages.getMessages, { channel: "#general" }) ?? [];
+
+  const claimedAssignments = allAssignments.filter((a: any) => a.status === "claimed");
+  const activeAssignments = allAssignments.filter((a: any) => a.status === "active");
 
   return (
     <div className="space-y-10">
@@ -36,9 +39,9 @@ export default function WorkshopDashboard() {
         <div className="bg-white/[0.02] border border-white/5 p-6 hover:bg-white/[0.03] transition-colors">
           <div className="text-[10px] tracking-[0.2em] text-gray-600 uppercase mb-4">Assignments</div>
           <div className="text-4xl font-light text-white mb-2">
-            {assignments.length}
+            {claimedAssignments.length}
           </div>
-          <div className="text-xs text-gray-600">Currently active</div>
+          <div className="text-xs text-gray-600">Currently claimed</div>
         </div>
 
         <div className="bg-white/[0.02] border border-white/5 p-6 hover:bg-white/[0.03] transition-colors">
@@ -54,8 +57,8 @@ export default function WorkshopDashboard() {
       <div className="bg-white/[0.02] border border-white/5 p-8">
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h2 className="text-xl font-light text-white tracking-tight">Active Assignments</h2>
-            <p className="text-xs text-gray-600 mt-1">{assignments.length} in progress</p>
+            <h2 className="text-xl font-light text-white tracking-tight">Your Claimed Assignments</h2>
+            <p className="text-xs text-gray-600 mt-1">{claimedAssignments.length} in progress</p>
           </div>
           <Link
             href="/assignments"
@@ -64,29 +67,30 @@ export default function WorkshopDashboard() {
             View All →
           </Link>
         </div>
-        {assignments.length === 0 ? (
+        {claimedAssignments.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-600 text-sm">No active assignments</p>
+            <p className="text-gray-600 text-sm">No claimed assignments</p>
           </div>
         ) : (
           <div className="space-y-3">
-            {assignments.slice(0, 3).map((assignment: any) => (
-              <div
+            {claimedAssignments.slice(0, 3).map((assignment: any) => (
+              <Link
                 key={assignment._id}
-                className="group p-5 bg-white/[0.02] border border-white/5 hover:bg-white/[0.03] hover:border-white/10 transition-all"
+                href={`/assignments/${assignment._id}`}
+                className="block group p-5 bg-white/[0.02] border border-white/5 hover:bg-white/[0.03] hover:border-white/10 transition-all"
               >
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-white font-light text-base">
                     {assignment.title}
                   </h3>
-                  <span className="text-[10px] px-2 py-1 bg-white/5 text-gray-500 tracking-wider uppercase">
+                  <span className="text-[10px] px-2 py-1 bg-blue-400/10 text-blue-400 tracking-wider uppercase">
                     {assignment.type}
                   </span>
                 </div>
                 <p className="text-sm text-gray-600 leading-relaxed">
                   {assignment.description}
                 </p>
-              </div>
+              </Link>
             ))}
           </div>
         )}

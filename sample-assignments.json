@@ -1,0 +1,229 @@
+[
+  {
+    "title": "Secure Server Infrastructure",
+    "description": "Audit and reinforce security protocols for primary data center. Review firewall configurations and implement zero-trust architecture.",
+    "type": "digital",
+    "status": "active",
+    "estimatedDuration": "4-6 hours",
+    "requirements": [
+      "VPN access credentials",
+      "Security audit checklist",
+      "Administrative privileges"
+    ],
+    "steps": [
+      "Connect to secure VPN and authenticate with 2FA",
+      "Run automated security scan on all server instances",
+      "Review firewall rules and identify outdated configurations",
+      "Implement zero-trust policies for internal network segments",
+      "Document all changes and update security protocols",
+      "Generate compliance report and submit to command"
+    ]
+  },
+  {
+    "title": "Field Reconnaissance - Downtown",
+    "description": "Survey the financial district for potential security vulnerabilities. Document entry points and surveillance coverage.",
+    "type": "physical",
+    "status": "active",
+    "location": {
+      "lat": 37.7946,
+      "lng": -122.3999,
+      "address": "Financial District, San Francisco, CA"
+    },
+    "estimatedDuration": "2-3 hours",
+    "requirements": [
+      "Camera equipment (discreet)",
+      "Notepad or digital recording device",
+      "Appropriate cover attire"
+    ],
+    "steps": [
+      "Arrive at designated coordinates during business hours",
+      "Conduct perimeter walk and identify all entry/exit points",
+      "Document security camera positions and blind spots",
+      "Note security personnel patrol patterns and timing",
+      "Photograph key infrastructure points (discreetly)",
+      "Compile findings and upload encrypted report"
+    ]
+  },
+  {
+    "title": "Encrypted Communication Protocol",
+    "description": "Develop and test new end-to-end encryption system for secure team communications. Implement key rotation mechanism.",
+    "type": "digital",
+    "status": "active",
+    "estimatedDuration": "6-8 hours",
+    "requirements": [
+      "Development environment access",
+      "Cryptography library documentation",
+      "Test user accounts"
+    ],
+    "steps": [
+      "Set up isolated development environment",
+      "Implement AES-256 encryption for message payload",
+      "Create automated key rotation system (24-hour cycle)",
+      "Build secure key exchange protocol",
+      "Conduct penetration testing with security team",
+      "Deploy to staging environment and monitor for 48 hours"
+    ]
+  },
+  {
+    "title": "Asset Recovery - Warehouse 7",
+    "description": "Retrieve classified equipment from storage facility. Verify inventory and transport to secure location.",
+    "type": "physical",
+    "status": "active",
+    "location": {
+      "lat": 37.7699,
+      "lng": -122.3892,
+      "address": "Warehouse District, Pier 70, San Francisco, CA"
+    },
+    "estimatedDuration": "3-4 hours",
+    "requirements": [
+      "Access keycard for Warehouse 7",
+      "Inventory checklist",
+      "Secure transport vehicle",
+      "Two-person team minimum"
+    ],
+    "steps": [
+      "Arrive at warehouse and verify perimeter security",
+      "Access facility using provided credentials",
+      "Locate storage unit B-47 in the east wing",
+      "Verify all items against provided inventory list",
+      "Secure equipment in transport containers",
+      "Transport to designated safe house and confirm delivery"
+    ]
+  },
+  {
+    "title": "Network Penetration Testing",
+    "description": "Conduct authorized penetration test on client infrastructure. Document vulnerabilities and provide remediation recommendations.",
+    "type": "digital",
+    "status": "active",
+    "estimatedDuration": "8-10 hours",
+    "requirements": [
+      "Penetration testing toolkit",
+      "Client authorization letter",
+      "Secure reporting template"
+    ],
+    "steps": [
+      "Review scope of engagement and authorized targets",
+      "Conduct initial reconnaissance and port scanning",
+      "Attempt common vulnerability exploits",
+      "Test for SQL injection and XSS vulnerabilities",
+      "Document all findings with severity ratings",
+      "Prepare detailed remediation report with timeline"
+    ]
+  },
+  {
+    "title": "Surveillance Equipment Deployment",
+    "description": "Install monitoring equipment at designated coordinates. Ensure proper concealment and test signal transmission.",
+    "type": "physical",
+    "status": "completed",
+    "location": {
+      "lat": 37.8044,
+      "lng": -122.2712,
+      "address": "Oakland Hills Overlook, Oakland, CA"
+    },
+    "estimatedDuration": "2-3 hours",
+    "requirements": [
+      "Surveillance equipment package",
+      "Installation tools",
+      "Signal testing device"
+    ],
+    "steps": [
+      "Scout location for optimal placement",
+      "Install primary monitoring device in concealed position",
+      "Set up backup power supply",
+      "Test signal strength and transmission quality",
+      "Camouflage installation site",
+      "Verify remote access and confirm operational status"
+    ]
+  },
+  {
+    "title": "Database Migration",
+    "description": "Migrate legacy systems to new secure infrastructure. Ensure zero downtime and data integrity throughout process.",
+    "type": "digital",
+    "status": "active",
+    "estimatedDuration": "10-12 hours",
+    "requirements": [
+      "Database administrator credentials",
+      "Backup verification tools",
+      "Migration scripts"
+    ],
+    "steps": [
+      "Create full backup of existing database",
+      "Verify backup integrity and test restoration",
+      "Set up parallel database instance on new infrastructure",
+      "Run migration scripts and validate data transfer",
+      "Perform comprehensive data integrity checks",
+      "Switch traffic to new database with zero downtime",
+      "Monitor for 24 hours and maintain rollback capability"
+    ]
+  },
+  {
+    "title": "Dead Drop Verification - Golden Gate",
+    "description": "Verify security of designated exchange location. Check for surveillance and establish backup protocols.",
+    "type": "physical",
+    "status": "active",
+    "location": {
+      "lat": 37.8199,
+      "lng": -122.4783,
+      "address": "Golden Gate Bridge Vista Point, San Francisco, CA"
+    },
+    "estimatedDuration": "1-2 hours",
+    "requirements": [
+      "Counter-surveillance equipment",
+      "Communication device",
+      "Cover identity documentation"
+    ],
+    "steps": [
+      "Arrive 30 minutes early and observe from distance",
+      "Check for surveillance cameras and suspicious vehicles",
+      "Verify dead drop location is undisturbed",
+      "Test signal strength for emergency communications",
+      "Identify and document two backup locations nearby",
+      "Report findings and receive confirmation from command"
+    ]
+  },
+  {
+    "title": "Code Review - Authentication Module",
+    "description": "Security audit of authentication system. Identify potential vulnerabilities in session management and token handling.",
+    "type": "digital",
+    "status": "completed",
+    "estimatedDuration": "5-6 hours",
+    "requirements": [
+      "Source code repository access",
+      "Security review checklist",
+      "Static analysis tools"
+    ],
+    "steps": [
+      "Clone repository and set up review environment",
+      "Run static analysis tools on authentication module",
+      "Manually review session management implementation",
+      "Check for common vulnerabilities (OWASP Top 10)",
+      "Test token generation and validation logic",
+      "Document findings and create remediation tickets"
+    ]
+  },
+  {
+    "title": "Safe House Inspection",
+    "description": "Conduct security assessment of backup facility. Verify emergency protocols and supply inventory.",
+    "type": "physical",
+    "status": "active",
+    "location": {
+      "lat": 37.7576,
+      "lng": -122.4376,
+      "address": "Mission District Safe House, San Francisco, CA"
+    },
+    "estimatedDuration": "2-3 hours",
+    "requirements": [
+      "Safe house access codes",
+      "Inspection checklist",
+      "Emergency supply list"
+    ],
+    "steps": [
+      "Verify perimeter security and entry points",
+      "Check all locks, alarms, and security systems",
+      "Inspect emergency supplies and medical kit",
+      "Test communication equipment and backup power",
+      "Verify escape routes and emergency protocols",
+      "Update inventory and report any deficiencies"
+    ]
+  }
+]

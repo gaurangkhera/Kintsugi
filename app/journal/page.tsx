@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useMode } from "@/app/providers/ModeProvider";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { Trash2 } from "lucide-react";
+import { WorkshopTransition } from "@/components/transitions/WorkshopTransition";
 
 const TRIGGER_PHRASE = "I am Jack's complete lack of surprise";
 
@@ -19,6 +20,7 @@ export default function JournalPage() {
   const [content, setContent] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
+  const [showTransition, setShowTransition] = useState(false);
   const createJournalEntry = useMutation(api.journal.createJournalEntry);
   const deleteJournalEntry = useMutation(api.journal.deleteJournalEntry);
   const journals = useQuery(api.journal.getJournalEntries) ?? [];
@@ -55,14 +57,10 @@ export default function JournalPage() {
     setIsSaving(true);
 
     try {
-      // Check for the trigger phrase
       if (content.includes(TRIGGER_PHRASE)) {
-        // ACTIVATE THE WORKSHOP
+        setShowTransition(true);
         await activateWorkshop();
-        // Redirect to dashboard after activation
-        router.push("/dashboard");
       } else {
-        // Normal journal entry save
         await createJournalEntry({ content });
         setContent("");
       }
@@ -71,6 +69,10 @@ export default function JournalPage() {
     } finally {
       setIsSaving(false);
     }
+  };
+
+  const handleTransitionComplete = () => {
+    router.push("/dashboard");
   };
 
   return (
@@ -224,6 +226,8 @@ export default function JournalPage() {
           </div>
         </div>
       </main>
+
+      <WorkshopTransition show={showTransition} onComplete={handleTransitionComplete} />
     </div>
   );
 }

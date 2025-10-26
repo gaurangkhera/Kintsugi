@@ -37,13 +37,17 @@ export default defineSchema(
       title: v.string(),
       description: v.string(),
       type: v.union(v.literal("digital"), v.literal("physical")),
-      status: v.union(v.literal("active"), v.literal("completed")),
+      status: v.union(v.literal("active"), v.literal("claimed"), v.literal("completed")),
       location: v.optional(
         v.object({
           lat: v.number(),
           lng: v.number(),
+          address: v.optional(v.string()),
         })
       ),
+      steps: v.optional(v.array(v.string())),
+      requirements: v.optional(v.array(v.string())),
+      estimatedDuration: v.optional(v.string()),
     }).index("by_status", ["status"]),
 
     // Messages table for private mode (The Workshop comms)
