@@ -1,14 +1,15 @@
 [
   {
-    "title": "Secure Server Infrastructure",
-    "description": "Audit and reinforce security protocols for primary data center. Review firewall configurations and implement zero-trust architecture.",
+    "title": "Code Warriors Network Security Audit",
+    "description": "Audit and reinforce security protocols for Code Warriors infrastructure. Review firewall configurations and implement zero-trust architecture for the hackathon network.",
     "type": "digital",
     "status": "active",
     "estimatedDuration": "4-6 hours",
     "requirements": [
       "VPN access credentials",
       "Security audit checklist",
-      "Administrative privileges"
+      "Administrative privileges",
+      "Code Warriors security handbook"
     ],
     "steps": [
       "Connect to secure VPN and authenticate with 2FA",
@@ -16,18 +17,18 @@
       "Review firewall rules and identify outdated configurations",
       "Implement zero-trust policies for internal network segments",
       "Document all changes and update security protocols",
-      "Generate compliance report and submit to command"
+      "Generate compliance report and submit to Code Warriors command"
     ]
   },
   {
-    "title": "Field Reconnaissance - Downtown",
-    "description": "Survey the financial district for potential security vulnerabilities. Document entry points and surveillance coverage.",
+    "title": "Field Reconnaissance - Connaught Place",
+    "description": "Survey the central business district for potential security vulnerabilities. Document entry points and surveillance coverage in the heart of Delhi.",
     "type": "physical",
     "status": "active",
     "location": {
-      "lat": 37.7946,
-      "lng": -122.3999,
-      "address": "Financial District, San Francisco, CA"
+      "lat": 28.6315,
+      "lng": 77.2167,
+      "address": "Connaught Place, New Delhi, India"
     },
     "estimatedDuration": "2-3 hours",
     "requirements": [
@@ -46,7 +47,7 @@
   },
   {
     "title": "Encrypted Communication Protocol",
-    "description": "Develop and test new end-to-end encryption system for secure team communications. Implement key rotation mechanism.",
+    "description": "Develop and test new end-to-end encryption system for secure team communications. Implement key rotation mechanism for Code Warriors operations.",
     "type": "digital",
     "status": "active",
     "estimatedDuration": "6-8 hours",
@@ -65,34 +66,34 @@
     ]
   },
   {
-    "title": "Asset Recovery - Warehouse 7",
-    "description": "Retrieve classified equipment from storage facility. Verify inventory and transport to secure location.",
+    "title": "Asset Recovery - DPS Vasant Kunj Campus",
+    "description": "Retrieve classified equipment from secure storage facility at DPS Vasant Kunj. Verify inventory and transport to secure location for Code Warriors hackathon setup.",
     "type": "physical",
     "status": "active",
     "location": {
-      "lat": 37.7699,
-      "lng": -122.3892,
-      "address": "Warehouse District, Pier 70, San Francisco, CA"
+      "lat": 28.5244,
+      "lng": 77.1588,
+      "address": "DPS Vasant Kunj, Sector C, Vasant Kunj, New Delhi, India"
     },
     "estimatedDuration": "3-4 hours",
     "requirements": [
-      "Access keycard for Warehouse 7",
+      "Access keycard for DPS campus",
       "Inventory checklist",
       "Secure transport vehicle",
       "Two-person team minimum"
     ],
     "steps": [
-      "Arrive at warehouse and verify perimeter security",
+      "Arrive at DPS Vasant Kunj campus and verify perimeter security",
       "Access facility using provided credentials",
-      "Locate storage unit B-47 in the east wing",
+      "Locate storage unit in the computer lab wing",
       "Verify all items against provided inventory list",
       "Secure equipment in transport containers",
-      "Transport to designated safe house and confirm delivery"
+      "Transport to designated Code Warriors venue and confirm delivery"
     ]
   },
   {
     "title": "Network Penetration Testing",
-    "description": "Conduct authorized penetration test on client infrastructure. Document vulnerabilities and provide remediation recommendations.",
+    "description": "Conduct authorized penetration test on client infrastructure. Document vulnerabilities and provide remediation recommendations for Code Warriors participants.",
     "type": "digital",
     "status": "active",
     "estimatedDuration": "8-10 hours",
@@ -111,14 +112,14 @@
     ]
   },
   {
-    "title": "Surveillance Equipment Deployment",
-    "description": "Install monitoring equipment at designated coordinates. Ensure proper concealment and test signal transmission.",
+    "title": "Surveillance Equipment Deployment - India Gate",
+    "description": "Install monitoring equipment at designated coordinates near India Gate. Ensure proper concealment and test signal transmission for the operation.",
     "type": "physical",
     "status": "completed",
     "location": {
-      "lat": 37.8044,
-      "lng": -122.2712,
-      "address": "Oakland Hills Overlook, Oakland, CA"
+      "lat": 28.6129,
+      "lng": 77.2295,
+      "address": "India Gate, Rajpath, New Delhi, India"
     },
     "estimatedDuration": "2-3 hours",
     "requirements": [
@@ -137,7 +138,7 @@
   },
   {
     "title": "Database Migration",
-    "description": "Migrate legacy systems to new secure infrastructure. Ensure zero downtime and data integrity throughout process.",
+    "description": "Migrate legacy systems to new secure infrastructure. Ensure zero downtime and data integrity throughout process for Code Warriors platform.",
     "type": "digital",
     "status": "active",
     "estimatedDuration": "10-12 hours",
@@ -157,14 +158,14 @@
     ]
   },
   {
-    "title": "Dead Drop Verification - Golden Gate",
-    "description": "Verify security of designated exchange location. Check for surveillance and establish backup protocols.",
+    "title": "Dead Drop Verification - Qutub Minar",
+    "description": "Verify security of designated exchange location near Qutub Minar. Check for surveillance and establish backup protocols for Code Warriors intel exchange.",
     "type": "physical",
     "status": "active",
     "location": {
-      "lat": 37.8199,
-      "lng": -122.4783,
-      "address": "Golden Gate Bridge Vista Point, San Francisco, CA"
+      "lat": 28.5244,
+      "lng": 77.1855,
+      "address": "Qutub Minar Complex, Mehrauli, New Delhi, India"
     },
     "estimatedDuration": "1-2 hours",
     "requirements": [
@@ -183,7 +184,7 @@
   },
   {
     "title": "Code Review - Authentication Module",
-    "description": "Security audit of authentication system. Identify potential vulnerabilities in session management and token handling.",
+    "description": "Security audit of authentication system for Code Warriors platform. Identify potential vulnerabilities in session management and token handling.",
     "type": "digital",
     "status": "completed",
     "estimatedDuration": "5-6 hours",
@@ -202,14 +203,14 @@
     ]
   },
   {
-    "title": "Safe House Inspection",
-    "description": "Conduct security assessment of backup facility. Verify emergency protocols and supply inventory.",
+    "title": "Safe House Inspection - Hauz Khas Village",
+    "description": "Conduct security assessment of backup facility in Hauz Khas. Verify emergency protocols and supply inventory for Code Warriors operations.",
     "type": "physical",
     "status": "active",
     "location": {
-      "lat": 37.7576,
-      "lng": -122.4376,
-      "address": "Mission District Safe House, San Francisco, CA"
+      "lat": 28.5494,
+      "lng": 77.1925,
+      "address": "Hauz Khas Village, New Delhi, India"
     },
     "estimatedDuration": "2-3 hours",
     "requirements": [
@@ -224,6 +225,33 @@
       "Test communication equipment and backup power",
       "Verify escape routes and emergency protocols",
       "Update inventory and report any deficiencies"
+    ]
+  },
+  {
+    "title": "Warrior Protocol Activation - DPS Command Center",
+    "description": "Activate the Warrior Protocol at DPS Vasant Kunj command center. Initialize all systems for Code Warriors hackathon and verify operational readiness.",
+    "type": "physical",
+    "status": "active",
+    "location": {
+      "lat": 28.5244,
+      "lng": 77.1588,
+      "address": "DPS Vasant Kunj, Sector C, Vasant Kunj, New Delhi, India"
+    },
+    "estimatedDuration": "4-5 hours",
+    "requirements": [
+      "Master access credentials",
+      "System initialization checklist",
+      "Emergency shutdown protocols",
+      "Code Warriors authorization token"
+    ],
+    "steps": [
+      "Access DPS command center using master credentials",
+      "Initialize primary systems and verify network connectivity",
+      "Activate Code Warriors monitoring dashboard",
+      "Test emergency communication channels",
+      "Verify all participant workstations are operational",
+      "Conduct final security sweep and declare system ready",
+      "Notify all Code Warriors operatives of activation status"
     ]
   }
 ]
