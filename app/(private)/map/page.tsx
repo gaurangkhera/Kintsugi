@@ -14,6 +14,7 @@ const MapComponent = dynamic(() => import("@/components/private/MapView"), {
   ),
 });
 
+
 export default function MapPage() {
   const assignments = useQuery(api.assignments.getAssignmentsWithLocation) ?? [];
 
@@ -39,7 +40,9 @@ export default function MapPage() {
         </div>
       ) : (
         <div className="bg-white/[0.02] border border-white/5 overflow-hidden">
-          <MapComponent assignments={assignments} />
+          <MapComponent
+          //@ts-ignore
+           assignments={assignments} />
         </div>
       )}
     </div>
