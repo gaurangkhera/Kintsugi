@@ -7,11 +7,8 @@ import Link from "next/link";
 
 export default function WorkshopDashboard() {
   const user = useQuery(api.users.getCurrentUser);
-  const allAssignments = useQuery(api.assignments.getAllAssignments) ?? [];
+  const claimedAssignments = useQuery(api.assignments.getMyClaimedAssignments) ?? [];
   const messages = useQuery(api.messages.getMessages, { channel: "#general" }) ?? [];
-
-  const claimedAssignments = allAssignments.filter((a: any) => a.status === "claimed");
-  const activeAssignments = allAssignments.filter((a: any) => a.status === "active");
 
   return (
     <div className="space-y-10">

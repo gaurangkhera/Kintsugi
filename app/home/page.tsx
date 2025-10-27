@@ -7,6 +7,7 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Image from "next/image";
 
 export default function HomePage() {
   const { isSignedIn, isLoaded } = useUser();
@@ -54,7 +55,14 @@ export default function HomePage() {
 
       <header className="sticky top-0 z-50 bg-black/50 backdrop-blur-xl border-b border-white/5">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/home" className="text-xl font-semibold text-white hover:text-gray-300 transition-colors">
+          <Link href="/home" className="flex items-center gap-3 text-xl font-semibold text-white hover:text-gray-300 transition-colors">
+            <Image 
+              src="/logo.png" 
+              alt="Kintsugi Logo" 
+              width={32} 
+              height={32}
+              className="rounded-full"
+            />
             Kintsugi
           </Link>
           <div className="flex items-center gap-4">

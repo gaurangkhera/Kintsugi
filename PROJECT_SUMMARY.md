@@ -1,15 +1,15 @@
 # Kintsugi - Project Summary
 
-## 🎯 Project Overview
+## Project Overview
 
 Kintsugi is a sophisticated dual-mode web application that presents two completely different interfaces based on user mode:
 
 1. **Public Mode (Kintsugi)**: A serene, minimalist wellness application
 2. **Private Mode (The Workshop)**: A dark, utilitarian interface for a secret movement
 
-The transformation between modes is triggered by a hidden phrase in the journal, creating an engaging "Easter egg" experience inspired by Fight Club.
+The transformation between modes is triggered by a hidden phrase in the journal - creating an engaging "Easter egg" experience inspired by Fight Club.
 
-## 🏗️ Architecture
+## Architecture
 
 ### Technology Stack
 - **Frontend**: Next.js 14 (App Router)
@@ -27,7 +27,7 @@ The transformation between modes is triggered by a hidden phrase in the journal,
 - **Dynamic Imports**: Map component loaded client-side to avoid SSR issues
 - **Real-time Subscriptions**: Convex queries auto-update on data changes
 
-## 📦 What Was Built
+## What Was Built
 
 ### Backend (Convex)
 
@@ -166,7 +166,7 @@ The transformation between modes is triggered by a hidden phrase in the journal,
 - 2.5 second duration
 - Triggered on mode change from public to private
 
-## 🎨 Design System
+## Design System
 
 ### Public Mode (Kintsugi)
 - **Background**: Off-white (`stone-50`)
@@ -186,18 +186,18 @@ The transformation between modes is triggered by a hidden phrase in the journal,
 - **Borders**: Yellow with low opacity
 - **Cards**: Dark gray with yellow borders
 
-## 🔐 Security & Authentication
+## Security & Authentication
 
 - Clerk handles all authentication
 - JWT tokens validated by Convex
-- User creation automatic on first sign-in
-- Mode stored in database, not client-side
+- User creation is automatic on first sign-in
+- Mode stored in database (not client-side)
 - All mutations require authentication
 - Users can only access their own data
 
-## 🚀 Key Features
+## Key Features
 
-### ✅ Implemented
+### Implemented
 1. **Dual-mode interface** with distinct themes
 2. **Secret trigger phrase** detection in journal
 3. **Animated transition** between modes
@@ -211,7 +211,7 @@ The transformation between modes is triggered by a hidden phrase in the journal,
 11. **Type-safe** with TypeScript
 12. **Authentication** with Clerk
 
-### 🎯 The Secret Mechanism
+### The Secret Mechanism
 
 The core "Easter egg" works as follows:
 
@@ -224,7 +224,7 @@ The core "Easter egg" works as follows:
 7. After animation, user sees The Workshop interface
 8. **Mode change is permanent** - user stays in private mode
 
-## 📁 File Structure
+## File Structure
 
 ```
 kintsugi/
@@ -264,7 +264,7 @@ kintsugi/
 └── PROJECT_SUMMARY.md              # This file
 ```
 
-## 🔧 Configuration Files
+## Configuration Files
 
 - **`tailwind.config.js`**: Font families, colors, animations
 - **`package.json`**: Dependencies and scripts
@@ -272,7 +272,7 @@ kintsugi/
 - **`next.config.js`**: Next.js configuration
 - **`.env.local`**: Environment variables (Clerk keys)
 
-## 📊 Data Flow
+## Data Flow
 
 ### Public Mode Flow
 1. User signs in → Clerk authenticates
@@ -301,7 +301,7 @@ kintsugi/
 6. Comms enables real-time chat
 7. All data syncs via Convex
 
-## 🎓 Learning Outcomes
+## Learning Outcomes
 
 This project demonstrates:
 - **Complex state management** across app
@@ -314,7 +314,7 @@ This project demonstrates:
 - **Type safety** with TypeScript
 - **Modern UI** with Tailwind & shadcn/ui
 
-## 🚦 Next Steps
+## Next Steps
 
 To complete the setup:
 1. Install missing dependencies (framer-motion, leaflet, lucide-react)
@@ -325,7 +325,7 @@ To complete the setup:
 6. Trigger the secret phrase
 7. Explore The Workshop
 
-## 🎬 Demo Flow
+## Demo Flow
 
 1. **Landing**: User sees clean Kintsugi landing page
 2. **Sign Up**: User creates account via Clerk
@@ -344,4 +344,4 @@ To complete the setup:
 
 ---
 
-**Built with ❤️ using Next.js, Convex, and Clerk**
+**Built using Next.js, Convex, and Clerk**

@@ -38,6 +38,9 @@ export default defineSchema(
       description: v.string(),
       type: v.union(v.literal("digital"), v.literal("physical")),
       status: v.union(v.literal("active"), v.literal("claimed"), v.literal("completed")),
+      claimedBy: v.optional(v.id("users")),
+      claimedAt: v.optional(v.number()),
+      completedAt: v.optional(v.number()),
       location: v.optional(
         v.object({
           lat: v.number(),
@@ -48,7 +51,9 @@ export default defineSchema(
       steps: v.optional(v.array(v.string())),
       requirements: v.optional(v.array(v.string())),
       estimatedDuration: v.optional(v.string()),
-    }).index("by_status", ["status"]),
+    })
+      .index("by_status", ["status"])
+      .index("by_claimed_user", ["claimedBy"]),
 
     // Messages table for private mode (The Workshop comms)
     messages: defineTable({

@@ -6,6 +6,7 @@ import { useMode } from "./providers/ModeProvider";
 import { SignInButton, SignUpButton, useUser } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const { mode, isLoading } = useMode();
@@ -46,7 +47,16 @@ export default function Home() {
 
         <header className="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-xl border-b border-white/5">
           <div className="container mx-auto px-6 py-5 flex justify-between items-center">
-            <Link href="/"><div className="text-xl font-semibold text-white">Kintsugi</div></Link>
+            <Link href="/" className="flex items-center gap-3">
+              <Image 
+                src="/logo.png" 
+                alt="Kintsugi Logo" 
+                width={36} 
+                height={36}
+                className="rounded-full"
+              />
+              <div className="text-xl font-semibold text-white">Kintsugi</div>
+            </Link>
             <div className="flex gap-2">
               <SignInButton mode="modal">
                 <Button variant="ghost" className="text-gray-400 hover:text-white hover:bg-white/5">

@@ -24,6 +24,8 @@ export default function AssignmentDetailPage() {
   const [isCompleteDragging, setIsCompleteDragging] = useState(false);
   const [isCompleting, setIsCompleting] = useState(false);
   
+  const [error, setError] = useState<string | null>(null);
+  
   const containerRef = useRef<HTMLDivElement>(null);
   const completeContainerRef = useRef<HTMLDivElement>(null);
   const startXRef = useRef(0);
@@ -83,13 +85,15 @@ export default function AssignmentDetailPage() {
     
     if (dragPosition >= CLAIM_THRESHOLD) {
       setIsClaiming(true);
+      setError(null);
       try {
         await claimAssignment({ id: assignmentId });
         setTimeout(() => {
           router.push("/assignments");
         }, 1000);
-      } catch (error) {
+      } catch (error: any) {
         console.error("Failed to claim assignment:", error);
+        setError(error.message || "Failed to claim assignment. It may have been claimed by another operative.");
         setDragPosition(0);
         setIsClaiming(false);
       }
@@ -115,13 +119,15 @@ export default function AssignmentDetailPage() {
     
     if (completeDragPosition >= COMPLETE_THRESHOLD) {
       setIsCompleting(true);
+      setError(null);
       try {
         await completeAssignment({ assignmentId });
         setTimeout(() => {
           router.push("/assignments");
         }, 1000);
-      } catch (error) {
+      } catch (error: any) {
         console.error("Failed to complete assignment:", error);
+        setError(error.message || "Failed to complete assignment. Please try again.");
         setCompleteDragPosition(0);
         setIsCompleting(false);
       }
@@ -150,6 +156,12 @@ export default function AssignmentDetailPage() {
         <ArrowLeft className="w-4 h-4" />
         Back to Assignments
       </button>
+
+      {error && (
+        <div className="bg-red-400/10 border border-red-400/20 p-4 rounded-lg">
+          <p className="text-red-400 text-sm">{error}</p>
+        </div>
+      )}
 
       <div className="bg-white/[0.02] border border-white/5 p-8">
         <div className="flex items-start justify-between mb-6">

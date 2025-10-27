@@ -145,3 +145,67 @@ export async function hashString(input: string): Promise<string> {
   const hashArray = Array.from(new Uint8Array(hashBuffer));
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
+
+/**
+ * Encrypts sensitive assignment data for local storage
+ * Uses user-specific key derived from session
+ */
+export async function encryptAssignmentData(data: any, userId: string): Promise<string> {
+  try {
+    const encoder = new TextEncoder();
+    const jsonData = JSON.stringify(data);
+    const encodedData = encoder.encode(jsonData);
+    
+    const iv = crypto.getRandomValues(new Uint8Array(IV_LENGTH));
+    const salt = new TextEncoder().encode(`kintsugi-assignment-${userId}`);
+    const key = await deriveKey(`workshop-data-${userId}`, salt);
+    
+    const ciphertext = await crypto.subtle.encrypt(
+      {
+        name: ENCRYPTION_ALGORITHM,
+        iv: iv,
+      },
+      key,
+      encodedData
+    );
+    
+    const combined = new Uint8Array(iv.length + ciphertext.byteLength);
+    combined.set(iv, 0);
+    combined.set(new Uint8Array(ciphertext), iv.length);
+    
+    return btoa(String.fromCharCode.apply(null, Array.from(combined)));
+  } catch (error) {
+    console.error('Assignment data encryption failed:', error);
+    throw new Error('Failed to encrypt assignment data');
+  }
+}
+
+/**
+ * Decrypts sensitive assignment data from local storage
+ */
+export async function decryptAssignmentData(encryptedData: string, userId: string): Promise<any> {
+  try {
+    const combined = Uint8Array.from(atob(encryptedData), c => c.charCodeAt(0));
+    const iv = combined.slice(0, IV_LENGTH);
+    const ciphertext = combined.slice(IV_LENGTH);
+    
+    const salt = new TextEncoder().encode(`kintsugi-assignment-${userId}`);
+    const key = await deriveKey(`workshop-data-${userId}`, salt);
+    
+    const decrypted = await crypto.subtle.decrypt(
+      {
+        name: ENCRYPTION_ALGORITHM,
+        iv: iv,
+      },
+      key,
+      ciphertext
+    );
+    
+    const decoder = new TextDecoder();
+    const jsonData = decoder.decode(decrypted);
+    return JSON.parse(jsonData);
+  } catch (error) {
+    console.error('Assignment data decryption failed:', error);
+    return null;
+  }
+}

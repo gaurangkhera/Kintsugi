@@ -3,7 +3,7 @@
 ## Overview
 
 Kintsugi is a dual-mode web application with:
-- **Public Mode**: A clean, minimalist wellness app (Kintsugi)
+- **Public Mode**: A clean, minimalist wellness app
 - **Private Mode**: A dark, hacker-aesthetic interface (The Workshop)
 
 ## Prerequisites
@@ -97,7 +97,7 @@ I am Jack's complete lack of surprise
 ```
 And clicks "Save Entry", the application will:
 1. Trigger a glitch animation
-2. Transform from the light theme to dark theme
+2. Transform from light theme to dark theme
 3. Reveal "The Workshop" interface
 4. Permanently switch the user to private mode
 
@@ -142,7 +142,7 @@ Once activated, users see:
 
 ### Test the Public Interface
 1. Sign up for a new account
-2. You'll see the Kintsugi wellness interface
+2. You will see the Kintsugi wellness interface
 3. Add some tasks and try the focus timer
 4. Navigate to the journal
 
@@ -150,11 +150,11 @@ Once activated, users see:
 1. In the journal, type: `I am Jack's complete lack of surprise`
 2. Click "Save Entry"
 3. Watch the transition animation
-4. You'll be redirected to The Workshop dashboard
+4. You will be redirected to The Workshop dashboard
 
 ### Test the Private Interface
 1. Explore the dashboard
-2. View assignments (you'll need to seed some data via Convex dashboard)
+2. View assignments (you will need to seed some data via Convex dashboard)
 3. Check the map (assignments with location data will appear)
 4. Use the comms system to send messages
 
@@ -200,7 +200,7 @@ pnpm add framer-motion react-leaflet leaflet @types/leaflet lucide-react
 ```
 
 ### Map Not Loading
-Make sure you've installed leaflet and its types:
+Make sure you have installed leaflet and its types:
 ```bash
 pnpm add react-leaflet leaflet @types/leaflet
 ```
@@ -237,15 +237,15 @@ kintsugi/
 
 ## Key Features
 
-✅ Dual-mode interface with seamless transition
-✅ Clerk authentication integration
-✅ Real-time Convex database
-✅ Secret trigger phrase detection
-✅ Animated mode transition with glitch effects
-✅ Interactive map with Leaflet
-✅ Real-time chat system
-✅ Responsive design with Tailwind CSS
-✅ Type-safe with TypeScript
+- Dual-mode interface with seamless transition
+- Clerk authentication integration
+- Real-time Convex database
+- Secret trigger phrase detection
+- Animated mode transition with glitch effects
+- Interactive map with Leaflet
+- Real-time chat system
+- Responsive design with Tailwind CSS
+- Type-safe with TypeScript
 
 ## Next Steps
 
@@ -256,4 +256,4 @@ kintsugi/
 5. Trigger the secret phrase
 6. Explore The Workshop
 
-Enjoy building with Kintsugi! 🏺
+Enjoy building with Kintsugi.

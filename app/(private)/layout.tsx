@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
 import { useMode } from "../providers/ModeProvider";
 import { useEffect } from "react";
+import Image from "next/image";
 
 const navigation = [
   { name: "DASHBOARD", href: "/dashboard" },
@@ -54,13 +55,24 @@ export default function PrivateLayout({
 
       <aside className="w-64 border-r border-white/5 flex flex-col relative z-10 bg-black/50 backdrop-blur-sm">
         <div className="p-8 border-b border-white/5">
-          <div className="flex items-center gap-3 mb-1">
-            <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
-            <span className="text-[10px] tracking-[0.2em] text-gray-600 uppercase">System Active</span>
+          <div className="flex items-center gap-4 mb-4">
+            <Image 
+              src="/logo.png" 
+              alt="Kintsugi Logo" 
+              width={48} 
+              height={48}
+              className="rounded-full"
+            />
+            <div>
+              <h1 className="text-xl font-light tracking-tight text-white">
+                THE WORKSHOP
+              </h1>
+              <div className="flex items-center gap-2 mt-1">
+                <div className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse"></div>
+                <span className="text-[9px] tracking-[0.2em] text-gray-600 uppercase">System Active</span>
+              </div>
+            </div>
           </div>
-          <h1 className="text-2xl font-light tracking-tight text-white mt-4">
-            THE WORKSHOP
-          </h1>
         </div>
 
         <nav className="flex-1 p-4 space-y-1">

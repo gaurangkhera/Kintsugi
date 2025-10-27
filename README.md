@@ -1,21 +1,69 @@
-# Convex + TypeScript + Next.js + Clerk + Tailwind + shadcn/ui
+# Kintsugi
 
-This template provides a minimal setup to get Convex working with [Next.js](https://nextjs.org/). It uses [Clerk](https://clerk.dev/) for user authentication.
+A dual-mode productivity and operations platform. Public mode offers journaling, task management, and focus tracking; private mode (THE WORKSHOP) provides secure assignment management, encrypted communications, and tactical operations coordination.
 
-Start by editing `convex/myFunctions.ts` and interact with your Next.js app.
+## Tech Stack
 
-See Convex docs at https://docs.convex.dev/home
+- Next.js 14 with App Router
+- TypeScript
+- Convex (backend and database)
+- Clerk (authentication)
+- Tailwind CSS
+- Framer Motion (animations)
+- Leaflet (maps)
 
-## Setting up
+## Features
 
+### Public Mode
+- Task management with completion tracking
+- Journal entries with history
+- Focus timer with session tracking
+- Clean, modern UI
+
+### THE WORKSHOP (Private Mode)
+- Secure assignment system with claim/complete workflow
+- Step-by-step mission instructions
+- Google Maps integration for physical assignments
+- End-to-end encrypted communications
+- Reputation system
+- Real-time messaging
+
+## Setup
+
+1. Install dependencies:
+```bash
+npm install
 ```
-npm create convex@latest -t nextjs-clerk-shadcn
+
+2. Set up environment variables in `.env.local`:
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_key
+CLERK_SECRET_KEY=your_clerk_secret
+NEXT_PUBLIC_CONVEX_URL=your_convex_url
 ```
 
-Then:
+3. Run Convex dev server:
+```bash
+npx convex dev
+```
 
-1. Follow steps 1 to 3 in the [Clerk onboarding guide](https://docs.convex.dev/auth/clerk#get-started)
-2. Paste the Issuer URL as `CLERK_JWT_ISSUER_DOMAIN` to your dev deployment environment variable settings on the Convex dashboard (see [docs](https://docs.convex.dev/auth/clerk#configuring-dev-and-prod-instances))
-3. Paste your publishable key as `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="<your publishable key>"` to the `.env.local` file in this directory.
+4. Run Next.js dev server:
+```bash
+npm run dev
+```
 
-If you want to sync Clerk user data via webhooks, check out this [example repo](https://github.com/thomasballinger/convex-clerk-users-table/).
+5. Open http://localhost:3000
+
+## Security
+
+See SECURITY.md for detailed security architecture, including:
+- End-to-end encryption for communications
+- Multi-user assignment protection
+- Client-side data encryption
+- User isolation and access control
+
+## Documentation
+
+- SECURITY.md - Security architecture and implementation details
+- SETUP.md - Detailed setup instructions
+- sample-assignments.json - Example assignment data with steps and requirements

@@ -19,7 +19,7 @@ export const getActiveAssignments = query({
   },
 });
 
-// Get all assignments (active and completed)
+// Get all assignments (active and user's claimed/completed)
 export const getAllAssignments = query({
   args: {},
   handler: async (ctx) => {
@@ -28,7 +28,49 @@ export const getAllAssignments = query({
       return [];
     }
 
-    const assignments = await ctx.db.query("assignments").collect();
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_token", (q) => q.eq("tokenIdentifier", identity.tokenIdentifier))
+      .first();
+
+    if (!user) {
+      return [];
+    }
+
+    const allAssignments = await ctx.db.query("assignments").collect();
+    
+    return allAssignments.filter((assignment) => {
+      if (assignment.status === "active") return true;
+      if (assignment.claimedBy === user._id) return true;
+      return false;
+    });
+  },
+});
+
+// Get user's claimed assignments only
+export const getMyClaimedAssignments = query({
+  args: {},
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      return [];
+    }
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_token", (q) => q.eq("tokenIdentifier", identity.tokenIdentifier))
+      .first();
+
+    if (!user) {
+      return [];
+    }
+
+    const assignments = await ctx.db
+      .query("assignments")
+      .withIndex("by_claimed_user", (q) => q.eq("claimedBy", user._id))
+      .filter((q) => q.eq(q.field("status"), "claimed"))
+      .collect();
+
     return assignments;
   },
 });
@@ -109,9 +151,78 @@ export const claimAssignment = mutation({
       throw new Error("Not authenticated");
     }
 
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_token", (q) => q.eq("tokenIdentifier", identity.tokenIdentifier))
+      .first();
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    const assignment = await ctx.db.get(args.id);
+    if (!assignment) {
+      throw new Error("Assignment not found");
+    }
+
+    if (assignment.status !== "active") {
+      throw new Error("Assignment is not available for claiming");
+    }
+
+    if (assignment.claimedBy && assignment.claimedBy !== user._id) {
+      throw new Error("Assignment already claimed by another operative");
+    }
+
     await ctx.db.patch(args.id, {
       status: "claimed",
+      claimedBy: user._id,
+      claimedAt: Date.now(),
     });
+
+    return { success: true };
+  },
+});
+
+// Unclaim an assignment (release it back to active pool)
+export const unclaimAssignment = mutation({
+  args: {
+    id: v.id("assignments"),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_token", (q) => q.eq("tokenIdentifier", identity.tokenIdentifier))
+      .first();
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    const assignment = await ctx.db.get(args.id);
+    if (!assignment) {
+      throw new Error("Assignment not found");
+    }
+
+    if (assignment.claimedBy !== user._id) {
+      throw new Error("You can only unclaim assignments you have claimed");
+    }
+
+    if (assignment.status !== "claimed") {
+      throw new Error("Assignment is not in claimed status");
+    }
+
+    await ctx.db.patch(args.id, {
+      status: "active",
+      claimedBy: undefined,
+      claimedAt: undefined,
+    });
+
+    return { success: true };
   },
 });
 
@@ -135,12 +246,25 @@ export const completeAssignment = mutation({
       throw new Error("User not found");
     }
 
+    const assignment = await ctx.db.get(args.assignmentId);
+    if (!assignment) {
+      throw new Error("Assignment not found");
+    }
+
+    if (assignment.status !== "claimed") {
+      throw new Error("Assignment must be claimed before completion");
+    }
+
+    if (assignment.claimedBy !== user._id) {
+      throw new Error("You can only complete assignments you have claimed");
+    }
+
+    const reputationGain = assignment.type === "physical" ? 150 : 100;
+
     await ctx.db.patch(args.assignmentId, {
       status: "completed",
+      completedAt: Date.now(),
     });
-
-    const assignment = await ctx.db.get(args.assignmentId);
-    const reputationGain = assignment?.type === "physical" ? 150 : 100;
 
     await ctx.db.patch(user._id, {
       reputation: user.reputation + reputationGain,
