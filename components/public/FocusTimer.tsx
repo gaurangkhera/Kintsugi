@@ -68,8 +68,47 @@ export function FocusTimer() {
             {isBreak ? "Break Time" : "Focus Time"}
           </p>
         </div>
-        <div className="text-8xl font-light text-white tabular-nums tracking-tight">
-          {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
+        
+        {/* Glowing circle timer */}
+        <div className="relative flex items-center justify-center">
+          {/* Outer glow ring */}
+          <div className="absolute w-80 h-80 rounded-full bg-purple-500/5 blur-2xl animate-pulse"></div>
+          
+          {/* Progress circle background */}
+          <svg className="w-80 h-80 -rotate-90 relative z-10">
+            {/* Background circle */}
+            <circle
+              cx="160"
+              cy="160"
+              r="140"
+              stroke="rgba(168, 85, 247, 0.1)"
+              strokeWidth="12"
+              fill="none"
+            />
+            {/* Progress circle */}
+            <circle
+              cx="160"
+              cy="160"
+              r="140"
+              stroke={isBreak ? "#06b6d4" : "#a855f7"}
+              strokeWidth="12"
+              fill="none"
+              strokeLinecap="round"
+              strokeDasharray={`${2 * Math.PI * 140}`}
+              strokeDashoffset={`${2 * Math.PI * 140 * (1 - ((isBreak ? 5 : 25) * 60 - (minutes * 60 + seconds)) / ((isBreak ? 5 : 25) * 60))}`}
+              className="transition-all duration-1000"
+              style={{
+                filter: isActive ? 'drop-shadow(0 0 8px rgba(168, 85, 247, 0.6))' : 'none'
+              }}
+            />
+          </svg>
+          
+          {/* Timer text in center */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-8xl font-light text-white tabular-nums tracking-tight">
+              {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
+            </div>
+          </div>
         </div>
       </div>
 
