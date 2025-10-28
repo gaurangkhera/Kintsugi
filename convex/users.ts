@@ -2,7 +2,6 @@ import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { internalMutation } from "./_generated/server";
 
-// Get or create user from Clerk authentication
 export const getOrCreateUser = mutation({
   args: {},
   handler: async (ctx) => {
@@ -75,6 +74,35 @@ export const activateWorkshop = mutation({
 
     await ctx.db.patch(user._id, {
       mode: "private",
+    });
+
+    return await ctx.db.get(user._id);
+  },
+});
+
+export const deactivateWorkshop = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_token", (q) => q.eq("tokenIdentifier", identity.tokenIdentifier))
+      .first();
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    if (user.mode === "public") {
+      return user; // Already in public mode
+    }
+
+    await ctx.db.patch(user._id, {
+      mode: "public",
     });
 
     return await ctx.db.get(user._id);
