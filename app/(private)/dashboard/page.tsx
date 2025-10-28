@@ -1,23 +1,45 @@
 "use client";
 
-import { useQuery } from "convex/react";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export default function WorkshopDashboard() {
   const user = useQuery(api.users.getCurrentUser);
   const claimedAssignments = useQuery(api.assignments.getMyClaimedAssignments) ?? [];
   const messages = useQuery(api.messages.getMessages, { channel: "#general" }) ?? [];
+  const deactivateWorkshop = useMutation(api.users.deactivateWorkshop);
+  const router = useRouter();
+
+  const handleReturnToPublic = async () => {
+    try {
+      await deactivateWorkshop();
+      router.push("/home");
+    } catch (error) {
+      console.error("Failed to return to public mode:", error);
+    }
+  };
 
   return (
     <div className="space-y-10">
       <div>
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-1 h-8 bg-amber-400"></div>
-          <h1 className="text-4xl font-light tracking-tight text-white">
-            Dashboard
-          </h1>
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-1 h-8 bg-amber-400"></div>
+            <h1 className="text-4xl font-light tracking-tight text-white">
+              Dashboard
+            </h1>
+          </div>
+          <Button
+            onClick={handleReturnToPublic}
+            variant="outline"
+            className="border-amber-400/30 text-amber-400 hover:bg-amber-400/10 hover:text-amber-300 transition-colors"
+          >
+            ← Return to Public Mode
+          </Button>
         </div>
         <p className="text-gray-500 text-sm tracking-wide">
           Welcome back, <span className="text-gray-400">{user?.name ?? "Operative"}</span>
