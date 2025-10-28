@@ -15,11 +15,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!isLoading && isLoaded && isSignedIn) {
-      if (mode === "private") {
-        router.push("/dashboard");
-      } else if (mode === "public") {
-        router.push("/home");
-      }
+      router.push('/home')
     }
   }, [mode, isLoading, isSignedIn, isLoaded, router]);
 
